@@ -9,7 +9,7 @@ public class Test {
         Depense nourriture1 = new Depense("Depenses pour les nourritures mensuels", 50000.0, Categorie.NOURRITURE, LocalDate.of(2024, 8, 27));
         Depense transport1 = new Depense("Depenses pour les transports en commun chaque mois", 40000.0, Categorie.TRANSPORT, LocalDate.of(2024, 8, 27));
         Depense divertissement1 = new Depense("Depenses pour quelque divertissements dans en un mois", 50000.0, Categorie.DIVERTISSEMENT, LocalDate.of(2024, 8, 27));
-        Depense servicesPublics1 = new Depense("Depenses pour les services publics et communautaire", 20000.0, Categorie.NOURRITURE, LocalDate.of(2024, 8, 27));
+        Depense servicesPublics1 = new Depense("Depenses pour les services publics et communautaire", 20000.0, Categorie.SERVICES_PUBLICS, LocalDate.of(2024, 8, 27));
         Depense autre1 = new Depense("Depenses pour les maladies ou soins", 60000.0, Categorie.AUTRE, LocalDate.of(2024, 8, 27));
         Depense nourriture2 = new Depense("Depenses pour les nourritures mensuels", 50000.0, Categorie.NOURRITURE, LocalDate.of(2024, 2, 27));
         Depense transport2 = new Depense("Depenses pour les transports en commun chaque mois", 50000.0, Categorie.TRANSPORT, LocalDate.of(2024, 2, 27));
@@ -40,15 +40,30 @@ public class Test {
 
         User mino = new User("Minosoa", 400000.0, new ArrayList<>());
 
+        System.out.println("Le nombre des depenses dans la liste avant insertion est : " + mino.getDepenses().size());
         mino.addExpense(depencesList);
         mino.addExpense(divertissement1);
+        System.out.println("Le nombre des depences dans la liste apres insertion est : " + mino.getDepenses().size());
+        System.out.println("--------------------------");
 
+        System.out.println("La liste des depenses sans la categorie nourriture : ");
         ArrayList<Depense> list = mino.getExpenseByCategory(Categorie.NOURRITURE);
         for (Depense depense : list) {
             System.out.println(depense);
         }
-        System.out.println(" ");
+        System.out.println("---------------------------");
 
-        System.out.println(mino.getTotalSpentThisMonth());
+        mino.alertUser();
+        System.out.println("---------------------------");
+
+        System.out.println("Le reste du budget du mois en court est : " + mino.getRemainingBudget());
+        System.out.println("---------------------------");
+
+        System.out.println("Voici les top categorie : ");
+        for (int i = 0; i<=2; i++){
+            System.out.println(mino.getTopCategories().get(i).getCategorie());
+        }
+        System.out.println("----------------------------");
+        mino.calculateAverageSpendingPerCategory();
     }
 }
