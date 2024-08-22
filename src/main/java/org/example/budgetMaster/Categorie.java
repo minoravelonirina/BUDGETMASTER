@@ -1,4 +1,4 @@
-package org.example;
+package org.example.budgetMaster;
 
 public enum Categorie {
     NOURRITURE("Nourriture"),
